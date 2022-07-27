@@ -1,0 +1,72 @@
+{% extends 'diseño.html' %} 
+
+{% block body %} 
+
+<div class="row">
+  <div class="col-md-5">    
+    <div class="card card-body">       
+      <form action="/agregarCliente" method ="POST">
+        <label for = "ID"> ID </label> <br>
+        <input type = 'number' name = 'id'> <br>
+        <label for = "NOMBRE"> NOMBRE </label> <br>
+        <input type = 'text' name = 'nombre'> <br>
+        <label for = "APELLIDO"> APELLIDO </label> <br>
+        <input type = 'text' name = 'apellido'> <br>
+        <label for = "DNI"> DNI </label> <br>
+        <input type = 'number' name = 'dni'> <br>
+        <label for = "EMAIL"> EMAIL </label> <br>
+        <input type = 'text' name = 'email'> <br>
+        <label for = "DIRECCION"> DIRECCION </label> <br>
+        <input type = 'text' name = 'direccion'> <br><br>
+        <button type = 'submit'>
+          GUARDAR
+        </button>
+      </form>
+    </div>
+
+  </div>
+  <div class="col-md-7">
+    <table class="table table=striped table-bordered bg-white table-sm"> 
+      <thead>
+        <tr>
+          <td>ID</td>
+          <td>NOMBRE</td>
+          <td>APELLIDO</td> 
+          <td>DNI</td>
+          <td>EMAIL</td>
+          <td>DIRECCION</td>
+          <td>OPERACIONES</td>
+        </tr>
+      </thead>
+      <tbody>
+        {% for cli in cliente %} 
+        <tr>
+          <td>{{ cli.0 }}</td>
+          <td>{{ cli.1 }}</td>
+          <td>{{ cli.2 }}</td>
+          <td>{{ cli.3 }}</td>
+          <td>{{ cli.4 }}</td>
+          <td>{{ cli.5 }}</td>
+          <td>
+            <a href = "/editarCliente/{{ cli.0 }}" class="btn btn-info"> EDITAR </a>
+            <a href ="/eliminarCliente/{{ cli.0 }}" class="btn btn-success"> ELIMINAR </a>
+          </td>    
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>   
+  </div>      
+</div> 
+
+{% with messages = get_flashed_messages() %} 
+    {% if messages %} 
+    {% for message in messages %} 
+    <p>{{ message }}</p> 
+    {% endfor %} 
+    {% endif %} 
+    {% endwith %}   
+
+
+
+{% endblock %}
+

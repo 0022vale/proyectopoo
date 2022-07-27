@@ -1,0 +1,24 @@
+{% extends 'diseño.html' %}
+
+{% block body %}
+<div class="col-md-4 offset-md-4">
+  <div class="card card-body">
+    <form action = "/actualizarProducto/{{producto.0}}" method = "POST">
+      <input type = "text" name = "nombre" placeholder = "nombre" value = "{{producto.1}}"> <br>
+      <input type = "text" name = "descripcion" placeholder = "descripcion" value = "{{producto.2}}"> <br>
+      <input type = "number" name = "precio" placeholder = "precio" value = "{{producto.3}}"> <br><br> 
+      <button type = 'submit'>
+        GUARDAR
+      </button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
+
+
+
+
+
+
+
